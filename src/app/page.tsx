@@ -80,7 +80,7 @@ export default function Home() {
 
             <Reveal delay={140} className="order-first lg:order-last">
               <Image
-                src="/logo.png"
+                src="/logo-lockup.png"
                 alt="46 Dogs logo — a sitting dog formed from the numerals 4 and 6, above the wordmark 46DOGS and the tagline Rescue. Care. Love."
                 width={720}
                 height={720}

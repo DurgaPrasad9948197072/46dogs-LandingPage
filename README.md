@@ -16,16 +16,26 @@ npm run build && npm start
 Everything visual is derived from **one file**: `public/logo.png`
 (square, black background, white artwork — the 46DOGS badge).
 
-A placeholder is committed so nothing renders broken. Replace it with the real
-artwork, then regenerate the derived assets:
+To swap the artwork, replace that file and regenerate:
 
 ```bash
 cp /path/to/46dogs-logo.png public/logo.png
 python3 scripts/generate-assets.py
+rm -rf .next/cache/images        # next/image caches by path, not content
 ```
 
-That writes `public/og.png` (1200×630), `src/app/icon.png` (favicon) and
-`src/app/apple-icon.png`.
+That writes:
+
+| File | Use |
+|---|---|
+| `public/logo-lockup.png` | hero — lockup trimmed so it fills its frame |
+| `public/logo-mark.png` | footer — dog mark alone |
+| `public/og.png` | 1200×630 social card |
+| `src/app/icon.png` | favicon (mark only; the lockup is illegible at 32px) |
+| `src/app/apple-icon.png` | iOS home screen |
+
+`public/logo.png` stays the untouched master and is what the NGO schema
+points at.
 
 ## Editing copy
 

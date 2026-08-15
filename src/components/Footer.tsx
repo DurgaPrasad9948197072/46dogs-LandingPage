@@ -11,8 +11,8 @@ export default function Footer() {
           {/* brand */}
           <div className="max-w-sm">
             <Image
-              src="/logo.png"
-              alt="46 Dogs — Rescue. Care. Love."
+              src="/logo-mark.png"
+              alt="46 Dogs"
               width={200}
               height={200}
               sizes="112px"
