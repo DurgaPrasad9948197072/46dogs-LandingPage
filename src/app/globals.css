@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── 46 Dogs palette: pure monochrome, taken from the logo ───────── */
+  --color-ink: #000000;        /* page ground */
+  --color-surface: #0a0a0a;    /* raised cards */
+  --color-surface-2: #111111;  /* hover / inputs */
+  --color-line: #232323;       /* hairline borders */
+  --color-line-soft: #1a1a1a;
+  --color-fg: #ffffff;         /* primary text            21:1  */
+  --color-muted: #a3a3a3;      /* secondary text          9.0:1 */
+  --color-dim: #737373;        /* tertiary / labels       4.9:1 */
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/*
+ * Fonts must live in `@theme inline`. next/font defines --font-outfit etc. on
+ * <body>; a plain @theme resolves var() at :root, where those are undefined,
+ * which silently computes the family to nothing. `inline` substitutes the
+ * value into each utility instead, so it resolves at the element.
+ */
+@theme inline {
+  --font-display: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-instrument), ui-serif, Georgia, serif;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* clears the sticky header when jumping to an anchor */
+    scroll-padding-top: 6rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-ink);
+    color: var(--color-fg);
+    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    font-size: 1rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+
+  p { text-wrap: pretty; }
+
+  ::selection {
+    background: var(--color-fg);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-fg);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Firefox keeps a default ring on top of ours */
+  :focus:not(:focus-visible) { outline: none; }
+}
+
+@layer components {
+  /* Eyebrow label above section headings */
+  .eyebrow {
+    font-family: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-dim);
+  }
+
+  /* Faint film grain so large black areas never band on cheap panels */
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+/* ── Scroll reveal ────────────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s var(--ease-out-soft),
+    transform 0.7s var(--ease-out-soft);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal[data-shown="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── FAQ accordion (native <details>) ─────────────────────────────── */
+details summary::-webkit-details-marker { display: none; }
+
+details[open] .faq-sign {
+  transform: rotate(45deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
