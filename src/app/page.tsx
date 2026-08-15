@@ -3,7 +3,14 @@ import Faq from "@/components/Faq";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Reveal from "@/components/Reveal";
-import { ArrowIcon, BowlIcon, GiftIcon, PawIcon, TagIcon } from "@/components/Icons";
+import {
+  ArrowIcon,
+  ArrowUpRightIcon,
+  BowlIcon,
+  GiftIcon,
+  PawIcon,
+  TagIcon,
+} from "@/components/Icons";
 import { SITE, WAYS_TO_HELP } from "@/lib/site";
 
 const HELP_ICONS = {
@@ -108,9 +115,10 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
                 title={`${SITE.founder.name} — founder of 46 Dogs`}
-                className="cursor-pointer font-display text-sm font-medium tracking-[0.22em] text-dim transition-colors duration-200 hover:text-fg"
+                className="group inline-flex cursor-pointer items-center gap-2 rounded-full border border-neutral-600 py-2.5 pr-4 pl-5 font-display text-sm font-semibold tracking-[0.22em] text-fg transition-colors duration-200 hover:border-fg hover:bg-fg hover:text-ink focus-visible:border-fg"
               >
                 {SITE.founder.alternateName}
+                <ArrowUpRightIcon className="h-3.5 w-3.5 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </a>
               <span aria-hidden="true" className="h-px w-10 bg-neutral-700" />
             </figcaption>
