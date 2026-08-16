@@ -6,7 +6,9 @@
 export const SITE = {
   name: "46 Dogs",
   slogan: "Rescue. Care. Love.",
-  url: "https://46dogs.com",
+  // Canonical host. 46dogs.com 308-redirects here, so every signal
+  // (canonical, og:url, sitemap, robots, JSON-LD) must use the www form.
+  url: "https://www.46dogs.com",
   email: "hello@46dogs.com",
   description:
     "46 Dogs rescues, feeds, and cares for India's street dogs (Indies). No business model — just rescue, care, and love. Launching soon.",
