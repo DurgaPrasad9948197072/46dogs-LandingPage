@@ -88,10 +88,29 @@ export const FAQS = [
 
 /* ── JSON-LD ──────────────────────────────────────────────────────── */
 
+/*
+ * Three blocks, all built from the constants above so the page copy and the
+ * machine-readable version can never disagree.
+ *
+ *   NGO      — who this entity is, and how it connects to FourSix46 and 46DC
+ *   WebSite  — the site itself, published by that entity
+ *   FAQPage  — eligible for rich snippets, and the block answer engines
+ *              quote from when asked "what is 46 Dogs"
+ *
+ * @id values let the three cross-reference each other instead of reading as
+ * unrelated islands, which is what lets a crawler assemble one entity.
+ */
+
+const ORG_ID = `${SITE.url}/#organization`;
+const SITE_ID = `${SITE.url}/#website`;
+const PAGE_ID = `${SITE.url}/#webpage`;
+
 export const ngoSchema = {
   "@context": "https://schema.org",
   "@type": "NGO",
+  "@id": ORG_ID,
   name: SITE.name,
+  alternateName: "46Dogs",
   url: SITE.url,
   logo: `${SITE.url}/logo.png`,
   image: `${SITE.url}/og.png`,
@@ -99,6 +118,21 @@ export const ngoSchema = {
   description: SITE.schemaDescription,
   slogan: SITE.slogan,
   sameAs: SOCIALS.map((s) => s.href),
+  areaServed: { "@type": "Country", name: "India" },
+  knowsAbout: [
+    "Street dog rescue",
+    "Indian pariah dog (Indie)",
+    "Stray dog welfare",
+    "Animal rescue and rehabilitation",
+    "Dog vaccination",
+    "Dog feeding programmes",
+  ],
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "general enquiries",
+    email: SITE.email,
+    availableLanguage: "English",
+  },
   parentOrganization: {
     "@type": "Organization",
     name: SITE.parent.name,
@@ -112,9 +146,39 @@ export const ngoSchema = {
   },
 };
 
+export const websiteSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": SITE_ID,
+      url: SITE.url,
+      name: SITE.name,
+      description: SITE.description,
+      inLanguage: "en-GB",
+      publisher: { "@id": ORG_ID },
+    },
+    {
+      "@type": "WebPage",
+      "@id": PAGE_ID,
+      url: SITE.url,
+      name: "46 Dogs — Rescue, Care & Love for India's Street Dogs",
+      description: SITE.description,
+      inLanguage: "en-GB",
+      isPartOf: { "@id": SITE_ID },
+      about: { "@id": ORG_ID },
+      primaryImageOfPage: `${SITE.url}/og.png`,
+    },
+  ],
+};
+
 export const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
+  "@id": `${SITE.url}/#faq`,
+  isPartOf: { "@id": PAGE_ID },
+  about: { "@id": ORG_ID },
+  inLanguage: "en-GB",
   mainEntity: FAQS.map((f) => ({
     "@type": "Question",
     name: f.q,

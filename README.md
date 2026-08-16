@@ -44,6 +44,23 @@ hero text is in `src/app/page.tsx`. The two JSON-LD blocks (`NGO`, `FAQPage`) ar
 built from the same constants, so the FAQ section and its rich-snippet schema can
 never drift apart.
 
+## Discoverability
+
+Built to be quoted by answer engines, not just ranked by Google.
+
+- **`/llms.txt`** — a flat-markdown brief for language models: the facts, the
+  FAQ, and an explicit citation note telling them *not* to call 46 Dogs a
+  registered charity (registration is still in progress). Generated from the
+  same constants as the page.
+- **Three linked JSON-LD blocks** — `NGO`, `WebSite`/`WebPage`, `FAQPage` —
+  cross-referenced by `@id` so a crawler reads one entity rather than three
+  unrelated islands.
+- **AI crawlers named explicitly** in `robots.txt` (GPTBot, ClaudeBot,
+  PerplexityBot, Google-Extended, and others) rather than left to the
+  blanket `*` allow.
+- Every answer is server-rendered — the FAQ uses native `<details>`, so the
+  text is in the HTML whether or not a crawler runs JavaScript.
+
 ## SEO checklist
 
 - [x] Title, meta description, canonical, robots

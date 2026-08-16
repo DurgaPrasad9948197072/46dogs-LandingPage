@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Instrument_Serif, Outfit } from "next/font/google";
-import { SITE, faqSchema, ngoSchema } from "@/lib/site";
+import { SITE, faqSchema, ngoSchema, websiteSchema } from "@/lib/site";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -92,6 +92,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(ngoSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
         <script
           type="application/ld+json"
