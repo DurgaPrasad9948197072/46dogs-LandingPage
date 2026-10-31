@@ -5,6 +5,17 @@ const nextConfig: NextConfig = {
   turbopack: { root: __dirname },
   poweredByHeader: false,
   compress: true,
+  // Backstop for the Vercel domain redirects: if 46dogs.com, www.46dogs.com
+  // or www.46dogs.org ever reach the app directly, send them to the bare
+  // .org host with a 301, keeping the path.
+  async redirects() {
+    return ["46dogs.com", "www.46dogs.com", "www.46dogs.org"].map((host) => ({
+      source: "/:path*",
+      has: [{ type: "host" as const, value: host }],
+      destination: "https://46dogs.org/:path*",
+      statusCode: 301 as const,
+    }));
+  },
   async headers() {
     return [
       {

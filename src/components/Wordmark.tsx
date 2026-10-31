@@ -1,24 +1,24 @@
+import Image from "next/image";
+
 /**
- * Typographic lockup used wherever the full logo artwork would be
- * too small to read (header, footer bar).
+ * Header lockup: the dog mark (the 4 and 6) beside the name, set in
+ * text so it stays crisp at header size.
  */
-export default function Wordmark({
-  className = "",
-  showTagline = false,
-}: {
-  className?: string;
-  showTagline?: boolean;
-}) {
+export default function Wordmark({ className = "" }: { className?: string }) {
   return (
-    <span className={`inline-flex flex-col leading-none ${className}`}>
-      <span className="font-display text-lg font-semibold tracking-[0.28em] text-fg sm:text-xl">
-        46DOGS
+    <span className={`inline-flex items-center gap-3 leading-none ${className}`}>
+      <Image
+        src="/logo-mark.png"
+        alt=""
+        width={80}
+        height={80}
+        sizes="40px"
+        priority
+        className="h-10 w-10 object-contain"
+      />
+      <span className="font-display text-lg font-semibold tracking-[0.04em] text-fg sm:text-xl">
+        46Dogs
       </span>
-      {showTagline && (
-        <span className="mt-1.5 font-display text-[0.5rem] font-medium tracking-[0.34em] text-dim sm:text-[0.5625rem]">
-          RESCUE. CARE. LOVE.
-        </span>
-      )}
     </span>
   );
 }

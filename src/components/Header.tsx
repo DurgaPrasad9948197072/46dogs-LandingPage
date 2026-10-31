@@ -1,7 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
-import { NAV } from "@/lib/site";
+import { NAV, SITE } from "@/lib/site";
 import Wordmark from "./Wordmark";
 
 export default function Header() {
@@ -38,13 +39,13 @@ export default function Header() {
       }`}
     >
       <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-6 lg:px-8">
-        <a
-          href="#top"
+        <Link
+          href="/#top"
           className="cursor-pointer transition-opacity duration-200 hover:opacity-70"
-          aria-label="46 Dogs — back to top"
+          aria-label="46Dogs home"
         >
           <Wordmark />
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-9 md:flex" aria-label="Primary">
           {NAV.map((item) => (
@@ -57,10 +58,10 @@ export default function Header() {
             </a>
           ))}
           <a
-            href="#help"
+            href={`mailto:${SITE.email}`}
             className="cursor-pointer rounded-full bg-fg px-5 py-2.5 text-sm font-medium text-ink transition-opacity duration-200 hover:opacity-85"
           >
-            Join the Mission
+            Contact us
           </a>
         </nav>
 
@@ -104,11 +105,11 @@ export default function Header() {
             </a>
           ))}
           <a
-            href="#help"
+            href={`mailto:${SITE.email}`}
             onClick={() => setOpen(false)}
             className="mt-5 mb-2 cursor-pointer rounded-full bg-fg px-5 py-3.5 text-center text-sm font-medium text-ink"
           >
-            Join the Mission
+            Contact us
           </a>
         </nav>
       </div>

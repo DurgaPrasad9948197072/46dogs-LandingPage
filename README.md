@@ -1,6 +1,6 @@
-# 46 Dogs — Landing Page
+# 46Dogs — Landing Page
 
-Single-page site for [46dogs.com](https://46dogs.com). Next.js (App Router) +
+One-page site for [46dogs.org](https://46dogs.org), plus a privacy notice at `/privacy`. Next.js (App Router) +
 Tailwind v4, pure-monochrome theme taken from the logo.
 
 ## Run
@@ -14,7 +14,7 @@ npm run build && npm start
 ## The logo (do this first)
 
 Everything visual is derived from **one file**: `public/logo.png`
-(square, black background, white artwork — the 46DOGS badge).
+(square, black background, white artwork — the 46Dogs badge).
 
 To swap the artwork, replace that file and regenerate:
 
@@ -40,7 +40,12 @@ points at.
 ## Editing copy
 
 All copy, links, and structured data live in [`src/lib/site.ts`](src/lib/site.ts) —
-hero text is in `src/app/page.tsx`. The two JSON-LD blocks (`NGO`, `FAQPage`) are
+hero and story text is in `src/app/page.tsx`. Follow the wording rules at the top
+of `site.ts` (name is always "46Dogs", not yet a registered charity, no donations,
+future tense, independent of FourSix46).
+
+When the charity is registered, change `CHARITY.note` (footer small print) and the
+"Is 46Dogs a registered charity?" answer in `FAQS`. The two JSON-LD blocks (`NGO`, `FAQPage`) are
 built from the same constants, so the FAQ section and its rich-snippet schema can
 never drift apart.
 
@@ -49,7 +54,7 @@ never drift apart.
 Built to be quoted by answer engines, not just ranked by Google.
 
 - **`/llms.txt`** — a flat-markdown brief for language models: the facts, the
-  FAQ, and an explicit citation note telling them *not* to call 46 Dogs a
+  FAQ, and an explicit citation note telling them *not* to call 46Dogs a
   registered charity (registration is still in progress). Generated from the
   same constants as the page.
 - **Three linked JSON-LD blocks** — `NGO`, `WebSite`/`WebPage`, `FAQPage` —
@@ -68,10 +73,18 @@ Built to be quoted by answer engines, not just ranked by Google.
 - [x] JSON-LD: `NGO` + `FAQPage` in `<head>`
 - [x] `sitemap.xml`, `robots.txt`, web manifest
 - [x] Favicon + apple touch icon
-- [ ] Submit `https://46dogs.com/sitemap.xml` to Google Search Console at launch
+- [ ] Add 46dogs.org to Google Search Console (DNS TXT record in Hostinger) and
+      submit `https://46dogs.org/sitemap.xml`
+
+## Domains
+
+`46dogs.org` is canonical. `46dogs.com`, `www.46dogs.com` and `www.46dogs.org`
+301-redirect to it with the path kept — set in Vercel's domain settings, with a
+backstop in `next.config.ts`. Never touch the MX/SPF/DKIM/DMARC records on
+46dogs.com: email there is in use.
 
 ## Contact
 
-There is no email-capture form — the launch list was removed. Every call to
-action points at `hello@46dogs.com` (set in `SITE.email`). The FAQ answer and
+There are no forms, cookies or analytics. Every call to action points at
+`contact@46dogs.org` (set in `SITE.email`). The FAQ answer and
 its `FAQPage` schema both say the same thing, from the same constant.

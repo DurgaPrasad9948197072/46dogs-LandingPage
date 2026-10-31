@@ -27,23 +27,22 @@ const instrument = Instrument_Serif({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
-  title: "46 Dogs — Rescue, Care & Love for India's Street Dogs",
+  title: SITE.title,
   description: SITE.description,
   applicationName: SITE.name,
   keywords: [
-    "46 Dogs",
-    "street dog rescue India",
+    "46Dogs",
+    "street dogs India",
+    "Rajahmundry street dogs",
     "Indies",
     "stray dog welfare",
-    "feed street dogs",
-    "sponsor a dog",
-    "dog vaccination India",
-    "FourSix46",
+    "dog sterilisation",
+    "rabies vaccination India",
   ],
-  authors: [{ name: SITE.parent.name, url: SITE.parent.url }],
-  creator: SITE.parent.name,
-  publisher: SITE.parent.name,
-  alternates: { canonical: SITE.url },
+  authors: [{ name: SITE.name, url: SITE.url }],
+  creator: SITE.name,
+  publisher: SITE.name,
+  alternates: { canonical: "/" },
   robots: {
     index: true,
     follow: true,
@@ -51,9 +50,9 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    url: SITE.url,
+    url: "/",
     siteName: SITE.name,
-    title: "46 Dogs — Rescue. Care. Love.",
+    title: SITE.title,
     description: SITE.description,
     locale: "en_GB",
     images: [
@@ -61,13 +60,13 @@ export const metadata: Metadata = {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "46 Dogs — Rescue. Care. Love.",
+        alt: "46Dogs logo",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "46 Dogs — Rescue. Care. Love.",
+    title: SITE.title,
     description: SITE.description,
     images: ["/og.png"],
     site: "@46Dogsuk",
@@ -87,7 +86,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en-GB" className="dark">
       <head>
         <script
           type="application/ld+json"

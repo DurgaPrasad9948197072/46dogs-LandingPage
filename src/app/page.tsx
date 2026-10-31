@@ -11,7 +11,7 @@ import {
   PawIcon,
   TagIcon,
 } from "@/components/Icons";
-import { SITE, WAYS_TO_HELP } from "@/lib/site";
+import { PLANS, SITE, WAYS_TO_HELP } from "@/lib/site";
 
 const HELP_ICONS = {
   feed: BowlIcon,
@@ -19,6 +19,9 @@ const HELP_ICONS = {
   name: TagIcon,
   gift: GiftIcon,
 } as const;
+
+const linkClass =
+  "cursor-pointer text-fg underline decoration-neutral-600 underline-offset-4 transition-colors duration-200 hover:decoration-fg";
 
 export default function Home() {
   return (
@@ -52,34 +55,33 @@ export default function Home() {
 
               <Reveal delay={90}>
                 <h1 className="mt-6 text-[2.6rem] leading-[1.04] font-semibold sm:text-6xl lg:text-[4rem]">
-                  46 Dogs
-                  <span className="mt-3 block text-[0.84em] text-fg/55">Rescue. Care. Love.</span>
-                  <span className="mt-3 block">for India&rsquo;s Street Dogs.</span>
+                  46Dogs:
+                  <span className="mt-3 block">Care for India&rsquo;s street dogs</span>
                 </h1>
               </Reveal>
 
               <Reveal delay={180}>
                 <p className="mt-8 max-w-xl text-lg text-muted sm:text-xl">
-                  A permanent home for every rescue story — feeding, vaccinating, and
-                  caring for India&rsquo;s street dogs, one dog, one name, one life at a
-                  time.
+                  46Dogs is a new charity being set up in England. We plan to feed,
+                  treat, sterilise, vaccinate and rehome street dogs, starting in
+                  Rajahmundry, Andhra Pradesh.
                 </p>
               </Reveal>
 
               <Reveal delay={270}>
                 <div className="mt-10 flex flex-col items-start gap-5 sm:flex-row sm:items-center">
                   <a
-                    href="#help"
+                    href="#about"
                     className="group inline-flex h-14 w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-fg px-8 text-base font-medium text-ink transition-opacity duration-200 hover:opacity-85 sm:w-auto"
                   >
-                    Join the Mission
+                    Read our story
                     <ArrowIcon className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
                   </a>
                   <a
-                    href="#about"
+                    href={`mailto:${SITE.email}`}
                     className="cursor-pointer text-base text-muted underline decoration-neutral-700 underline-offset-[6px] transition-colors duration-200 hover:text-fg hover:decoration-fg"
                   >
-                    Read Our Story
+                    Contact us
                   </a>
                 </div>
               </Reveal>
@@ -88,7 +90,7 @@ export default function Home() {
             <Reveal delay={140} className="order-first lg:order-last">
               <Image
                 src="/logo-lockup.png"
-                alt="46 Dogs logo — a sitting dog formed from the numerals 4 and 6, above the wordmark 46DOGS and the tagline Rescue. Care. Love."
+                alt="46Dogs logo: a sitting dog formed from the numerals 4 and 6"
                 width={720}
                 height={720}
                 priority
@@ -108,29 +110,31 @@ export default function Home() {
                 those who have none.&rdquo;
               </p>
             </blockquote>
-            <figcaption className="mt-9 flex items-center justify-center gap-4">
+            <figcaption className="mt-9 flex items-center justify-center gap-4 text-sm text-muted">
               <span aria-hidden="true" className="h-px w-10 bg-neutral-700" />
-              <a
-                href={SITE.founder.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                title={`${SITE.founder.name} — founder of 46 Dogs`}
-                className="group inline-flex cursor-pointer items-center gap-2 rounded-full border border-neutral-600 py-2.5 pr-4 pl-5 font-display text-sm font-semibold tracking-[0.22em] text-fg transition-colors duration-200 hover:border-fg hover:bg-fg hover:text-ink focus-visible:border-fg"
-              >
-                {SITE.founder.alternateName}
-                <ArrowUpRightIcon className="h-3.5 w-3.5 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-              </a>
+              <span>
+                <a
+                  href={SITE.founder.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`group inline-flex items-center gap-1 font-medium ${linkClass}`}
+                >
+                  {SITE.founder.name}
+                  <ArrowUpRightIcon className="h-3 w-3 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </a>
+                , founder of {SITE.name}
+              </span>
               <span aria-hidden="true" className="h-px w-10 bg-neutral-700" />
             </figcaption>
           </Reveal>
         </section>
 
-        {/* ── ABOUT ──────────────────────────────────────────────── */}
+        {/* ── OUR STORY ──────────────────────────────────────────── */}
         <section id="about" className="px-6 py-24 lg:px-8 lg:py-32">
           <div className="mx-auto max-w-6xl">
             <div className="grid gap-12 lg:grid-cols-[0.4fr_0.6fr] lg:gap-20">
               <Reveal>
-                <p className="eyebrow">About</p>
+                <p className="eyebrow">Our Story</p>
                 <h2 className="mt-6 text-4xl font-semibold sm:text-5xl">
                   Not a statistic.
                   <span className="mt-1 block text-[0.86em] text-fg/55">A life that is remembered.</span>
@@ -140,33 +144,55 @@ export default function Home() {
               <div className="space-y-7 text-lg text-muted">
                 <Reveal delay={80}>
                   <p>
-                    46 Dogs exists to rescue, feed, vaccinate, and care for India&rsquo;s
-                    street dogs — the Indies who search for food every day with no way to
-                    ask for help.
+                    46Dogs plans to feed, vaccinate and care for India&rsquo;s street dogs:
+                    the Indies who search for food every day with no way to ask for help.
                   </p>
                 </Reveal>
                 <Reveal delay={140}>
                   <p>
-                    Every dog we rescue gets a permanent record: a name, a health history,
-                    a story that doesn&rsquo;t disappear once the moment passes. Not a
-                    statistic. Not a passing act of kindness. A life that&rsquo;s tracked,
-                    cared for, and remembered.
+                    Every dog we help will have a permanent record: a name, a health
+                    history, a story that doesn&rsquo;t disappear once the moment passes.
+                    Not a statistic. Not a passing act of kindness. A life that will be
+                    tracked, cared for and remembered.
                   </p>
                 </Reveal>
                 <Reveal delay={200}>
-                  <p>
-                    46 Dogs is part of the {SITE.parent.trademark} ecosystem — built with
-                    the same discipline as everything else we build, and with none of the
-                    compromises.
-                  </p>
+                  <p>46Dogs is being set up as an independent charity, run by three trustees.</p>
                 </Reveal>
                 <Reveal delay={260}>
                   <p className="border-l border-neutral-700 pl-6 font-display text-xl leading-relaxed text-fg sm:text-2xl">
-                    There is no business model here. There never will be. Just rescue,
-                    care, and love, done properly, for as long as it takes.
+                    46Dogs does not trade. It will be funded by donations.
                   </p>
                 </Reveal>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── WHAT WE WILL DO ────────────────────────────────────── */}
+        <section id="plans" className="border-t border-line-soft px-6 py-24 lg:px-8 lg:py-32">
+          <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.4fr_0.6fr] lg:gap-20">
+            <Reveal>
+              <p className="eyebrow">Our Plans</p>
+              <h2 className="mt-6 text-4xl font-semibold sm:text-5xl">What we will do.</h2>
+            </Reveal>
+
+            <div>
+              <ol className="divide-y divide-line-soft border-y border-line-soft">
+                {PLANS.map((plan, i) => (
+                  <Reveal as="li" key={plan} delay={i * 60} className="flex gap-6 py-5">
+                    <span className="w-6 shrink-0 font-display text-sm leading-7 text-dim tabular-nums">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="text-lg text-fg">{plan}</span>
+                  </Reveal>
+                ))}
+              </ol>
+              <Reveal delay={120}>
+                <p className="mt-8 text-lg text-muted">
+                  We start in Rajahmundry and will grow as funds allow.
+                </p>
+              </Reveal>
             </div>
           </div>
         </section>
@@ -180,9 +206,8 @@ export default function Home() {
                 Four ways to change a life.
               </h2>
               <p className="mt-6 text-lg text-muted">
-                These are the actual donation products planned for launch — presented here
-                as what&rsquo;s coming, honestly, since the platform to process them
-                isn&rsquo;t live yet.
+                Donations are not open yet. We will open them once our charity bank
+                account is set up.
               </p>
             </Reveal>
 
@@ -191,11 +216,11 @@ export default function Home() {
                 const Icon = HELP_ICONS[way.id];
                 return (
                   <Reveal as="li" key={way.id} delay={i * 80}>
-                    <article className="group h-full rounded-2xl border border-line bg-surface p-8 transition-colors duration-300 hover:border-neutral-600 hover:bg-surface-2 sm:p-10">
+                    <article className="h-full rounded-2xl border border-line bg-surface p-8 sm:p-10">
                       <div className="flex items-start justify-between gap-6">
                         <Icon className="h-9 w-9 text-fg" />
-                        <span className="rounded-full border border-line px-3 py-1 font-display text-[0.625rem] font-medium tracking-[0.18em] text-dim uppercase">
-                          At launch
+                        <span className="rounded-full border border-line px-3 py-1 text-center font-display text-[0.625rem] font-medium tracking-[0.18em] text-dim uppercase">
+                          Coming when donations open
                         </span>
                       </div>
                       <h3 className="mt-8 font-display text-2xl font-semibold">
@@ -210,12 +235,8 @@ export default function Home() {
 
             <Reveal delay={120}>
               <p className="mt-12 text-base text-muted">
-                Donations open when the platform launches. To help before then —
-                fostering, feeding, or funding —{" "}
-                <a
-                  href={`mailto:${SITE.email}`}
-                  className="cursor-pointer text-fg underline decoration-neutral-600 underline-offset-4 transition-colors duration-200 hover:decoration-fg"
-                >
+                Have a question, or want to hear when donations open? Email{" "}
+                <a href={`mailto:${SITE.email}`} className={linkClass}>
                   {SITE.email}
                 </a>
                 .
@@ -238,7 +259,6 @@ export default function Home() {
             </Reveal>
           </div>
         </section>
-
       </main>
 
       <Footer />

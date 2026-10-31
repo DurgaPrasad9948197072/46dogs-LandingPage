@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  /* ── 46 Dogs palette: pure monochrome, taken from the logo ───────── */
+  /* ── 46Dogs palette: pure monochrome, taken from the logo ───────── */
   --color-ink: #000000;        /* page ground */
   --color-surface: #0a0a0a;    /* raised cards */
   --color-surface-2: #111111;  /* hover / inputs */
